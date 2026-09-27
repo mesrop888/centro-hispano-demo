@@ -28,3 +28,24 @@ One-time setup: on https://render.com choose **New → Blueprint**, connect this
 ### GitHub Pages (optional)
 
 `.github/workflows/pages.yml` can publish `site/` to GitHub Pages instead. It runs only when started manually from the Actions tab, after setting **Settings → Pages → Source: GitHub Actions**.
+
+### PythonAnywhere (runs wsgi.py)
+
+PythonAnywhere runs WSGI apps, so it uses `wsgi.py` (same routing as `server.py`, standard library only).
+
+1. In a **Bash console**: `git clone https://github.com/mesrop888/centro-hispano-demo.git`
+2. **Web** tab → **Add a new web app** → **Manual configuration** → any Python 3 version.
+3. Open the **WSGI configuration file** link, replace everything with:
+
+   ```python
+   import sys
+   path = "/home/YOUR_USERNAME/centro-hispano-demo"
+   if path not in sys.path:
+       sys.path.insert(0, path)
+   from wsgi import application
+   ```
+
+4. Optional, faster assets: **Static files** → URL `/assets/`, directory `/home/YOUR_USERNAME/centro-hispano-demo/site/assets`.
+5. Click **Reload**. The site is at `https://YOUR_USERNAME.pythonanywhere.com/`.
+
+To update later: `cd ~/centro-hispano-demo && git pull`, then **Reload** on the Web tab.
