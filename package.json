@@ -1,0 +1,12 @@
+{
+  "name": "centro-hispano",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Centro Hispano website (Armenian, English, Spanish)",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

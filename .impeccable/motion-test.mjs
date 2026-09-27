@@ -1,0 +1,25 @@
+import { spawn } from 'node:child_process'; import fs from 'node:fs'; import os from 'node:os'; import path from 'node:path';
+const [url, reduced, shotDir] = process.argv.slice(2);
+const prof = fs.mkdtempSync(path.join(os.tmpdir(), 'mt-')); const port = 9900 + Math.floor(Math.random() * 90);
+const proc = spawn('C:/Program Files/Google/Chrome/Application/chrome.exe', ['--headless=new', `--remote-debugging-port=${port}`, `--user-data-dir=${prof}`, 'about:blank']);
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms)); let ws;
+for (let i = 0; i < 50; i++) { try { const j = await (await fetch(`http://127.0.0.1:${port}/json/list`)).json(); const t = j.find((x) => x.type === 'page'); if (t) { ws = new WebSocket(t.webSocketDebuggerUrl); break; } } catch {} await sleep(200); }
+await new Promise((r) => ws.addEventListener('open', r)); let id = 0; const pend = {};
+ws.addEventListener('message', (m) => { const d = JSON.parse(m.data); if (d.id && pend[d.id]) { pend[d.id](d.result || d); delete pend[d.id]; } });
+const send = (method, params = {}) => new Promise((r) => { const i = ++id; pend[i] = r; ws.send(JSON.stringify({ id: i, method, params })); });
+await send('Emulation.setDeviceMetricsOverride', { width: 1440, height: 900, deviceScaleFactor: 1, mobile: false });
+await send('Emulation.setEmulatedMedia', { features: [{ name: 'prefers-reduced-motion', value: reduced === '1' ? 'reduce' : 'no-preference' }] });
+await send('Page.enable'); await send('Page.navigate', { url }); await sleep(250);
+const shot = async (n) => { if (!shotDir) return; const s = await send('Page.captureScreenshot', { format: 'png' }); fs.writeFileSync(path.join(shotDir, n + '.png'), Buffer.from(s.data, 'base64')); };
+await shot('m-0250'); await sleep(450); await shot('m-0700');
+const ev = async (e) => (await send('Runtime.evaluate', { expression: e, awaitPromise: true, returnByValue: true })).result.value;
+await sleep(1500);
+console.log(JSON.stringify(await ev(`(async()=>{const W=ms=>new Promise(r=>setTimeout(r,ms));const cs=s=>getComputedStyle(document.querySelector(s));const res={};
+res.hero=['.hero h1','.hero .actions','.hero-art .main','.sticker','.hero-art .brush'].map(s=>s.split(' ').pop()+':'+(+cs(s).opacity).toFixed(2)+' '+cs(s).transform.slice(0,34));
+const lad=document.querySelector('.ladder');res.ladder0=lad.className;window.scrollTo(0,lad.getBoundingClientRect().top+scrollY-300);await W(250);res.ladderMid=getComputedStyle(lad.querySelectorAll('li')[7]).transform;await W(1600);res.ladderEnd=lad.className+' li7 '+getComputedStyle(lad.querySelectorAll('li')[7]).transform+' op '+getComputedStyle(lad.querySelectorAll('li')[7]).opacity;
+const b=document.querySelector('.wall button');window.scrollTo(0,b.getBoundingClientRect().top+scrollY-300);await W(400);b.click();await W(80);const lb=document.getElementById('lightbox');res.lbMid=getComputedStyle(lb).transform.slice(0,40)+' op '+(+getComputedStyle(lb).opacity).toFixed(2);await W(600);res.lbEnd=lb.open+' '+getComputedStyle(lb).transform+' '+lb.querySelector('figcaption').textContent;
+lb.querySelector('.lb-next').click();await W(60);res.slide=lb.querySelector('img').className+' '+getComputedStyle(lb.querySelector('img')).transform.slice(0,30);
+lb.dispatchEvent(new KeyboardEvent('keydown',{key:'ArrowLeft',bubbles:true}));await W(500);res.key=lb.querySelector('figcaption').textContent;
+lb.querySelector('.lb-close').click();await W(400);res.closed=!lb.open+' focusBack:'+(document.activeElement===b);
+res.ribbon=document.querySelector('.ribbons').className;window.scrollTo(0,0);await W(1200);res.ribbonTop=document.querySelector('.ribbons').className;return res})()`), null, 1));
+ws.close(); proc.kill();

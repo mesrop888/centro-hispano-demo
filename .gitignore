@@ -1,0 +1,36 @@
+# Dependencies (none today, but keep them out if added)
+node_modules/
+
+# Logs and runtime files
+*.log
+npm-debug.log*
+
+# Environment and secrets
+.env
+.env.*
+
+# Operating system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors
+.vscode/
+.idea/
+*.swp
+
+# Claude Code: keep the shared launch config, ignore local settings
+.claude/*
+!.claude/launch.json
+
+# Impeccable design tooling: keep the design brief, ignore generated output
+.impeccable/review/
+.impeccable/questions/
+.impeccable/hook.cache.json
+
+# Python build cache (tools/build.py)
+__pycache__/
+*.pyc
+
+# Private outreach notes (contain personal contact details)
+message to centro hispano.txt

@@ -1,0 +1,128 @@
+{
+  "title": "Choose the visual world for Centro Hispano",
+  "question": "Minimal, red and yellow, your logo and photos kept. The roll assigned La Línea. Keep it, take an alternate, or re-roll.",
+  "options": [
+    {
+      "id": "assigned",
+      "label": "La Línea",
+      "kicker": "THE ROLL",
+      "lineage": "Metro de Madrid & Yerevan metro line diagrams",
+      "thesis": "Learning Spanish drawn as one metro line: A1 to C2 are stations, each two months apart.",
+      "palette": ["#ffffff", "#c8102e", "#ffc72c", "#111111"],
+      "materials": ["enamel wayfinding signage", "one thick red line on white"],
+      "viewport": "White field, logo top-left, a single red line crossing the page with eight yellow-ringed stations A1→C2 and the monthly price under each; one line of headline, one Contact button.",
+      "risk": "The metro metaphor turns gimmicky if it leaks past the level map and wayfinding into decoration.",
+      "raised": [
+        {"from": "rw-copy-shop-zine-interior", "raise": "Colour is the field, never the sprinkle: whole sections sit on solid yellow or red, nothing in between."},
+        {"from": "pop-culture-shelf-wax-pack-card", "raise": "Every course carries a ruled stat table in tabular figures: frequency, length, duration, price."},
+        {"from": "operate-b-normalled-jackfield", "raise": "Line states are drawn by stroke, not hue: solid for group levels, split for sub-levels, dashed for continuous courses."},
+        {"from": "textiles-weave-drape-fashion-memory-quilt-atlas", "raise": "Every photo carries its date and place caption like a station plaque."}
+      ]
+    },
+    {
+      "id": "model-pick",
+      "kicker": "IMPECCABLE’S PICK",
+      "label": "Hoja de examen",
+      "lineage": "Instituto Cervantes DELE exam papers and the CEFR grid",
+      "thesis": "The site as a clean exam booklet: numbered sections, ruled answer lines, levels as a CEFR table.",
+      "palette": ["#ffffff", "#111111", "#c8102e", "#ffc72c"],
+      "materials": ["ruled exam paper", "numbered question blocks"],
+      "viewport": "A cover sheet: logo, “¿Y tú hablas español?” as question 1, a ruled answer line leading to the level table.",
+      "risk": "Familiar school-document minimalism; many language schools land near here."
+    },
+    {
+      "id": "challenger-zine",
+      "label": "Copy-shop Zine",
+      "verdict": "declined",
+      "lineage": "photocopied zines on coloured stock",
+      "palette": ["#ffc72c", "#c8102e", "#111111"],
+      "materials": ["solar yellow stock", "typed column"],
+      "thesis": "Every page a single typed column on one sheet of coloured stock.",
+      "viewport": "Solar-yellow sheet, typed column, platen-enlarged headline running off the edge.",
+      "case": "Community would recognise the fiesta flyer, but course prices lose clarity and the look is not minimal.",
+      "risk": "Reads as a flyer, not a school.",
+      "kept": "Colour committed at page scale.",
+      "hero": "https://impeccable.style/worlds/cards/rw-copy-shop-zine-interior-hero.webp"
+    },
+    {
+      "id": "challenger-card",
+      "label": "Wax-pack Card",
+      "verdict": "declined",
+      "lineage": "baseball card fronts and stat backs",
+      "palette": ["#c8102e", "#ffffff", "#9a9a9a"],
+      "materials": ["card stock", "ruled stat tables"],
+      "thesis": "Each course a card: level on the front, stat table on the back.",
+      "viewport": "A dealt row of course cards with flip-to-stats.",
+      "case": "Audience in Yerevan does not identify with baseball cards; clarity only partially holds.",
+      "risk": "Novelty over trust.",
+      "kept": "Ruled tabular course specs.",
+      "hero": "https://impeccable.style/worlds/cards/pop-culture-shelf-wax-pack-card-hero.webp"
+    },
+    {
+      "id": "challenger-jackfield",
+      "label": "Normalled Jackfield",
+      "verdict": "declined",
+      "lineage": "machine-room patch schedules",
+      "palette": ["#0b0b0b", "#ffb000"],
+      "materials": ["black glass", "amber link lines"],
+      "thesis": "Numbered lanes with state drawn in link lines.",
+      "viewport": "Black lane grid with amber legends.",
+      "case": "Loses both axes: not minimal, not a school, drops the red.",
+      "risk": "Alien to the audience.",
+      "kept": "State by stroke pattern, not colour.",
+      "hero": "https://impeccable.style/worlds/cards/operate-b-normalled-jackfield-hero.webp"
+    },
+    {
+      "id": "challenger-quilt",
+      "label": "Memory Quilt",
+      "verdict": "declined",
+      "lineage": "pieced garment quilts",
+      "palette": ["#7d93b2", "#1a1a1a", "#c8102e"],
+      "materials": ["pieced cloth", "stitch rules"],
+      "thesis": "Events as pieced blocks with provenance.",
+      "viewport": "A quilt grid of event photos.",
+      "case": "Busy by nature; loses minimalism and course clarity.",
+      "risk": "Sentimental clutter.",
+      "kept": "Every image carries date and place.",
+      "hero": "https://impeccable.style/worlds/cards/textiles-weave-drape-fashion-memory-quilt-atlas-hero.webp"
+    },
+    {
+      "id": "challenger-darkroom",
+      "label": "Darkroom Safelight",
+      "verdict": "declined",
+      "lineage": "photo darkroom stations",
+      "palette": ["#b34a12", "#222222", "#f2f2f2"],
+      "materials": ["amber safelight", "silver prints"],
+      "thesis": "Photos develop slowly through stations.",
+      "viewport": "Amber-washed tray with emerging print.",
+      "case": "Loses both axes.",
+      "risk": "Moody, not minimal.",
+      "kept": "Stations linearize cleanly on phones."
+    },
+    {
+      "id": "challenger-accretion",
+      "label": "Accretion Disk",
+      "verdict": "declined",
+      "lineage": "black-hole imagery",
+      "palette": ["#000000", "#e0b040", "#c03020"],
+      "materials": ["void", "photon ring"],
+      "thesis": "Content orbiting an unmarked centre.",
+      "viewport": "Black void with gold ring.",
+      "case": "Loses both axes.",
+      "risk": "Irrelevant to the subject.",
+      "kept": "Generous unmarked emptiness."
+    }
+  ],
+  "reroll": {"registers": ["safer", "bolder"]},
+  "buildPath": {"value": "code", "toggle": false},
+  "canon": true,
+  "canonCard": {
+    "label": "Language-school standard",
+    "thesis": "Hero photo, headline, course cards, testimonials strip, contact form, executed cleanly.",
+    "palette": ["#ffffff", "#111111", "#c8102e"],
+    "materials": ["clean grid", "classroom photography"],
+    "viewport": "Full-width classroom photo with headline and Enrol button.",
+    "risk": "Indistinguishable from every other language school."
+  },
+  "steer": true
+}
