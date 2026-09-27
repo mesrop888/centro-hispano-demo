@@ -21,3 +21,9 @@ Then open http://localhost:5173 (Armenian), `/en/` or `/es/`. Stop with Ctrl+C.
 ## Publishing
 
 `site/_redirects` (Netlify) and `site/.htaccess` (Apache or shared hosting) send missing pages to the 404 page in the right language.
+
+### GitHub Pages
+
+Every push to `main` deploys `site/` through `.github/workflows/pages.yml`.
+One-time setup: repository **Settings → Pages → Build and deployment → Source: GitHub Actions**.
+Live at https://mesrop888.github.io/centro-hispano-demo/

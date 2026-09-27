@@ -154,3 +154,9 @@ document.querySelectorAll('.wall button').forEach((b) => {
   const set = () => { if (im.naturalWidth) b.style.setProperty('--ar', Math.min(2, Math.max(0.6, im.naturalWidth / im.naturalHeight)).toFixed(3)); };
   if (im.complete) set(); else im.addEventListener('load', set, { once: true });
 });
+
+// Hosts that serve a single 404 page (e.g. GitHub Pages): send /en/… and /es/… misses to their own language
+if (document.querySelector('.nf') && document.documentElement.lang === 'hy') {
+  const m = location.pathname.match(/^(.*?\/)(en|es)\//);
+  if (m) location.replace(`${m[1]}${m[2]}/404.html`);
+}

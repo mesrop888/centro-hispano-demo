@@ -1,0 +1,45 @@
+name: Deploy site to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Prepare site for the Pages sub-path
+        run: |
+          # Project sites live at /<repo>/, so the 404 pages' root-absolute
+          # links must carry that prefix. Skipped when a custom domain (CNAME) is set.
+          if [ ! -f site/CNAME ]; then
+            BASE="/${{ github.event.repository.name }}/"
+            for f in site/404.html site/en/404.html site/es/404.html; do
+              sed -i -E "s#(href|src)=\"/([^/\"])#\1=\"${BASE}\2#g" "$f"
+            done
+          fi
+          touch site/.nojekyll
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - id: deployment
+        uses: actions/deploy-pages@v4
