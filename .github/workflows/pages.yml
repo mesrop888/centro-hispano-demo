@@ -1,8 +1,7 @@
 name: Deploy site to GitHub Pages
 
+# Manual only: the site is hosted on Render (render.yaml). Run from the Actions tab to publish to Pages instead.
 on:
-  push:
-    branches: [main]
   workflow_dispatch:
 
 permissions:

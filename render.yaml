@@ -1,0 +1,11 @@
+# Render Blueprint: runs server.js as a free web service.
+# Render → New → Blueprint → pick this repository.
+services:
+  - type: web
+    name: centro-hispano
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    healthCheckPath: /
+    autoDeploy: true
