@@ -1,5 +1,7 @@
 # Dependencies (none today, but keep them out if added)
 node_modules/
+.claude/
+.impeccable/
 
 # Logs and runtime files
 *.log
