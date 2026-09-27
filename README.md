@@ -4,27 +4,25 @@ Static site in three languages: Armenian (main, at the root), English (`/en/`) a
 
 ## Run it locally
 
-Needs [Node.js](https://nodejs.org) 18 or newer. No install step.
+Needs [Python](https://www.python.org) 3.8 or newer. No install step.
 
-- **Windows:** double-click `start.bat`. The site opens in your browser.
-- **Any system:** `npm start` or `node server.js`
-- **Another port:** `node server.js 8080`
+    python server.py
 
-Then open http://localhost:5173 (Armenian), `/en/` or `/es/`. Stop with Ctrl+C.
+Another port: `python server.py 8080`. Then open http://localhost:5173 (Armenian), `/en/` or `/es/`. Stop with Ctrl+C.
 
 ## Folders
 
 - `site/`: the website itself. Upload this folder's contents to any web host.
-- `server.js`: the local web server. It also shows the right-language 404 page.
+- `server.py`: the web server (Python standard library). It also shows the right-language 404 page.
 - `tools/`: `build.py` regenerates the pages; `i18n_es.json` and `i18n_hy.json` hold the translations.
 
 ## Publishing
 
 `site/_redirects` (Netlify) and `site/.htaccess` (Apache or shared hosting) send missing pages to the 404 page in the right language.
 
-### Render (runs server.js)
+### Render (runs server.py)
 
-`render.yaml` deploys the site as a free Render web service that runs `node server.js`; every push to `main` redeploys.
+`render.yaml` deploys the site as a free Render web service that runs `python server.py`; every push to `main` redeploys.
 One-time setup: on https://render.com choose **New → Blueprint**, connect this GitHub repository, and apply.
 
 ### GitHub Pages (optional)

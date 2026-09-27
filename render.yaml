@@ -1,11 +1,14 @@
-# Render Blueprint: runs server.js as a free web service.
+# Render Blueprint: runs server.py as a free web service (Python standard library only).
 # Render → New → Blueprint → pick this repository.
 services:
   - type: web
     name: centro-hispano
-    runtime: node
+    runtime: python
     plan: free
-    buildCommand: npm install
-    startCommand: node server.js
+    buildCommand: echo "No dependencies to install"
+    startCommand: python server.py
     healthCheckPath: /
     autoDeploy: true
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7
